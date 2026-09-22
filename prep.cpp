@@ -1,4 +1,6 @@
 #include <iostream>
+#include <unordered_map>
+#include <unordered_set>
 
 bool isAnagram(string s, string t) {
     sort(s.begin(), s.end());
@@ -8,6 +10,20 @@ bool isAnagram(string s, string t) {
     } else {
         return false;
     }
+}
+
+unordered_map<char, int> getFrequency(string s) {
+    unordered_map<char, int> freq;
+    unordered_set<char> unique;
+    for (char sym : s) {
+        if (unique.find(sym) == unique.end()){
+            freq[sym]++; 
+        } else {
+            unique.insert(sym);
+            freq[sym] = 0;
+        }
+    }
+    return freq;
 }
 
 bool hasDuplicate(vector<int>& nums) {  
